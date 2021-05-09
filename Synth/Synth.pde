@@ -47,8 +47,6 @@ void keyPressed() {
     oscs[currentOscillator].freq(pitches[currentOctave][index]);
     oscs[currentOscillator].play();
   }
-  
-  println(currentKey);
 }
 
 void keyReleased() {
@@ -58,9 +56,11 @@ void keyReleased() {
 }
 
 void mouseMoved() {
-  currentOctave = (int) map(mouseY, 0, height, 4, 0);
+  currentOctave = (int) map(mouseY, 0, height, 0, pitches.length);
   currentOctave = abs(currentOctave - pitches.length) % pitches.length;
   ((Pulse) oscs[4]).width(map(mouseX, 0, width, 0.0, 1.0)); 
+  keyPressed();
+  
   
   println (mouseX + ":" + mouseY);
 }
